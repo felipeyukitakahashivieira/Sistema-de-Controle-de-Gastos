@@ -2,9 +2,8 @@ package inicio;
 
 import javax.swing.*;
 import funcionalidades.Gastos;
+import funcionalidades.ListarGastos;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Inicio extends JFrame {
 
@@ -13,8 +12,8 @@ public class Inicio extends JFrame {
 
     private JMenuBar menuBar = new JMenuBar();
     private JMenu menuArquivo = new JMenu("Arquivo");
-    private JMenuItem abrirArquivo = new JMenuItem("Abrir");
-    private JMenuItem NovoArquivo = new JMenuItem("Novo");
+    private JMenuItem novoGasto = new JMenuItem("Novo Gasto");
+    private JMenuItem listarGastos = new JMenuItem("Listar Gastos");
     private JMenuItem salvarArquivo = new JMenuItem("Salvar");
     private JMenu menuSair = new JMenu("Sair");
 
@@ -28,8 +27,9 @@ public class Inicio extends JFrame {
         inicioPainel.setLayout(null);
         this.setContentPane(inicioPainel);
 
-        menuArquivo.add(NovoArquivo);
-        menuArquivo.add(abrirArquivo);
+        menuArquivo.add(novoGasto);
+        menuArquivo.add(listarGastos);
+        menuArquivo.addSeparator();
         menuArquivo.add(salvarArquivo);
 
         menuBar.add(menuArquivo);
@@ -38,7 +38,6 @@ public class Inicio extends JFrame {
         setJMenuBar(menuBar);
 
         initComponents(nome);
-
         addListeners();
 
         setLocationRelativeTo(null);
@@ -47,18 +46,19 @@ public class Inicio extends JFrame {
 
     private void initComponents(String nome) {
         bemVindoUser = new JLabel("Bem vindo " + nome);
-
         bemVindoUser.setFont(new Font("Arial", Font.BOLD, 18));
-
         bemVindoUser.setBounds(20, 20, 400, 30);
         inicioPainel.add(bemVindoUser);
-
     }
 
     private void addListeners() {
 
-        NovoArquivo.addActionListener(e -> {
+        novoGasto.addActionListener(e -> {
             new Gastos();
+        });
+
+        listarGastos.addActionListener(e -> {
+            new ListarGastos();
         });
 
         menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
